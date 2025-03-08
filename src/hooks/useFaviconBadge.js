@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
+
+const imageLink = "/todo.svg";
 
 export function useFaviconBadge(count) {
   useEffect(() => {
@@ -7,7 +9,7 @@ export function useFaviconBadge(count) {
       // Reset to original favicon
       const link = document.querySelector("link[rel='icon']");
       if (link) {
-        link.href = "/todo.svg"; // Original favicon path
+        link.href = imageLink; // Original favicon path
       }
       document.title = "Todo New Tab"; // Reset title
       return;
@@ -25,24 +27,12 @@ export function useFaviconBadge(count) {
     // Load original favicon
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = "/todo.svg";
+    img.src = imageLink;
 
     img.onload = () => {
       // Draw original favicon
       ctx.drawImage(img, 0, 0, 32, 32);
 
-      // Draw badge
-      ctx.fillStyle = '#ff0000';
-      ctx.beginPath();
-      ctx.arc(24, 8, 8, 0, 2 * Math.PI);
-      ctx.fill();
-      
-      // Draw text
-      ctx.font = 'bold 12px Arial';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#ffffff';
-      
       // If the count is too high, show "99+"
       const displayCount = count > 99 ? "99+" : count.toString();
       ctx.fillText(displayCount, 24, 8);

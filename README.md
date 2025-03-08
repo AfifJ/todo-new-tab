@@ -2,7 +2,7 @@
 
 A powerful and customizable Chrome extension that transforms your new tab into a productive Todo management application.
 
-![Todo New Tab Screenshot](screenshot.png)
+![Todo New Tab Screenshot](image/screenshot.png)
 
 ## Features
 

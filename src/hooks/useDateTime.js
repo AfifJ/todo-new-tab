@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 export function useDateTime() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [dayPercentage, setDayPercentage] = useState("")
 
   const updateDateTime = () => {
     const today = new Date();
@@ -17,6 +18,12 @@ export function useDateTime() {
     const hours = today.getHours().toString().padStart(2, "0");
     const minutes = today.getMinutes().toString().padStart(2, "0");
     setTime(`${hours}:${minutes}`);
+
+    const totalMinutesPassed = parseInt(hours) * 60 + parseInt(minutes);
+    const totalMinutesInDay = 24 * 60;
+    
+    const percentage = (totalMinutesPassed / totalMinutesInDay) * 100;
+    setDayPercentage(percentage.toFixed(1))
   };
 
   useEffect(() => {
@@ -26,5 +33,5 @@ export function useDateTime() {
     return () => clearInterval(timeInterval);
   }, []);
 
-  return { date, time };
+  return { date, time, dayPercentage };
 }
