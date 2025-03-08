@@ -1,0 +1,638 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100vh;
+  height: auto;
+  background: rgba(250,250,250,1);
+  background: linear-gradient(to bottom, rgba(250,250,250,1) 0%, rgb(251, 246, 233) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#ffffff', GradientType=0 );
+}
+
+body {
+  font-size: 16px;
+  font-family: "Helvetica-Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+.app {
+  padding: 0 0 2em;
+  width: 600px;
+  max-width: 90%;
+  margin: auto;
+}
+
+.DateTime {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.QuickLinks {
+  margin-top: 20px;
+}
+
+.DateTime__Date {
+  display: block;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.DateTime__Time {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.TextBox {
+  height: 50px;
+  border: 0;
+  width: 100%;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  color: #333;
+  outline: none;
+  font-size: 15px;
+  padding: 0 15px;
+  font-family: inherit;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.TextBox::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+
+.TextBox:focus {
+  border: 1px solid rgba(210, 203, 185, 0.5)
+}
+
+.Todo__Container {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.Todolist {
+  min-height: 60px;
+  list-style: none;
+}
+
+.Empty {
+  list-style: none;
+  height: auto;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.4;
+  font-family: "georgia", serif;
+  color: #9c8e6a;
+  padding: 40px 0px;
+}
+
+.Todo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.Todo:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.Todo__Check {
+  padding: 0 1em;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Todo__Check i {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.Todo__Check--checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+}
+
+.Todo__Task {
+  flex: 1;
+  padding: 13px 1em 13px 0;
+  line-height: 1.5;
+  word-break: break-word;
+  cursor: grab;
+}
+
+.Todo--checked .Todo__Check i {
+  background: #27ae60;
+  border: 2px solid #27ae60;
+}
+
+.Todo--checked .Todo__Task {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.Todo__Actions {
+  display: flex;
+  align-items: center;
+}
+
+.Todo__Delete, .Todo__Edit {
+  border: none;
+  background: none;
+  margin: 0 5px;
+  font-size: 16px;
+  color: #ccc;
+  transition: color 0.2s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.Todo:hover .Todo__Delete, 
+.Todo:hover .Todo__Edit {
+  display: flex;
+}
+
+.Todo__Delete:hover {
+  color: #e74c3c;
+  background-color: #ffeaea;
+}
+
+.Todo__Edit:hover {
+  color: #27ae60;
+  background-color: #eafaf1;
+}
+
+.Todo__Edit-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.Todo__Input {
+  flex: 1;
+  font-family: inherit;
+  height: 35px;
+  outline: none;
+  font-size: 16px;
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-right: 10px;
+}
+
+.Todo__Edit-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.Todo__Save, 
+.Todo__Cancel {
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.Todo__Save {
+  color: white;
+  background-color: #27ae60;
+}
+
+.Todo__Save:hover {
+  background-color: #219653;
+}
+
+.Todo__Cancel {
+  color: white;
+  background-color: #e74c3c;
+}
+
+.Todo__Cancel:hover {
+  background-color: #c0392b;
+}
+
+.Todo--dragging {
+  background-color: #f8f9fa;
+  border: 1px dashed #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Todo__Task:active {
+  cursor: grabbing;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: 100%;
+  }
+}
+
+/* Add these styles after your existing CSS */
+
+/* App container with sidebar */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar.collapsed {
+  width: 40px;
+}
+
+.sidebar.expanded {
+  width: 250px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.toggle-sidebar {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #666;
+}
+
+.toggle-sidebar:hover {
+  background-color: #e0e0e0;
+}
+
+.sidebar-content {
+  padding: 10px;
+}
+
+.folder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.folder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.folder-item:hover {
+  background-color: #e9e9e9;
+}
+
+.folder-item.active {
+  background-color: #e0e7ff;
+  font-weight: 500;
+}
+
+.folder-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.folder-actions {
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.folder-item:hover .folder-actions {
+  opacity: 1;
+}
+
+.folder-edit-btn,
+.folder-delete-btn {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.folder-edit-btn:hover {
+  background-color: #e0e0e0;
+  color: #27ae60;
+}
+
+.folder-delete-btn:hover {
+  background-color: #ffe5e5;
+  color: #e74c3c;
+}
+
+.folder-edit {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.folder-edit input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.folder-edit button {
+  background: none;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
+.folder-edit button:first-of-type {
+  color: #27ae60;
+}
+
+.folder-edit button:last-of-type {
+  color: #e74c3c;
+}
+
+.add-folder-btn {
+  width: 100%;
+  background: none;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+  padding: 8px 0;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.add-folder-btn:hover {
+  background-color: #f0f0f0;
+  border-color: #aaa;
+}
+
+.add-folder-form {
+  margin-top: 10px;
+}
+
+.add-folder-form input {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.add-folder-form button {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.add-folder-form button:first-of-type {
+  background-color: #27ae60;
+  border-color: #27ae60;
+  color: white;
+}
+
+.main-content {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.folder-title {
+  margin-bottom: 20px;
+}
+
+.folder-title h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .sidebar.expanded {
+    width: 200px;
+  }
+  
+  .main-content {
+    padding: 0 10px;
+  }
+}
+
+.QuickLinks__AddButton {
+  background: none;
+  border: 1px solid #27ae60;
+  color: #27ae60;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.QuickLinks__AddButton:hover {
+  background-color: #27ae60;
+  color: white;
+}
+
+.QuickLinks__Form {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.QuickLinks__Input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.QuickLinks__Input:focus {
+  border-color: #bdc3c7;
+  outline: none;
+}
+
+.QuickLinks__FormActions {
+  display: flex;
+  gap: 8px;
+}
+
+.QuickLinks__SaveButton,
+.QuickLinks__CancelButton {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.QuickLinks__SaveButton {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+}
+
+.QuickLinks__CancelButton {
+  background: none;
+  border: 1px solid #ddd;
+}
+
+.QuickLinks__Grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.QuickLinks__Item {
+  position: relative;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 12px;
+  transition: all 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.QuickLinks__Item:hover {
+  background-color: #f1f1f1;
+}
+
+.QuickLinks__Link {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.QuickLinks__Actions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.QuickLinks__Item:hover .QuickLinks__Actions {
+  opacity: 1;
+}
+
+.QuickLinks__EditButton,
+.QuickLinks__DeleteButton {
+  background: none;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.QuickLinks__EditButton:hover {
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+.QuickLinks__DeleteButton:hover {
+  background-color: #ffeaea;
+  color: #e74c3c;
+}
+

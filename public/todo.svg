@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+    <!-- Pencil tip -->
+    <polygon points="2,30 10,22 12,24 4,32" fill="#303030"/>
+    
+    <!-- Pencil body/wood -->
+    <polygon points="10,22 24,8 28,12 14,26" fill="#FFD700"/>
+    
+    <!-- Pencil outline -->
+    <polygon points="10,22 24,8 28,12 14,26" stroke="#8B4513" stroke-width="0.5" fill="none"/>
+    
+    <!-- Eraser -->
+    <polygon points="24,8 28,4 32,8 28,12" fill="#FF6B6B"/>
+    
+    <!-- Pencil lead line -->
+    <line x1="4" y1="30" x2="14" y2="20" stroke="#303030" stroke-width="0.8"/>
+</svg>
